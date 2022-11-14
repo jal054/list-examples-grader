@@ -12,11 +12,10 @@
 # https://github.com/ucsd-cse15l-f22/list-methods-nested
 # https://github.com/ucsd-cse15l-f22/list-examples-subtle
 
-clear
-# set -e
+set -e
 
-# rm -rf student-submission
-# git clone $1 student-submission
+rm -rf student-submission
+git clone $1 student-submission
 
 if [ ! -e student-submission/ListExamples.java ]
 then
@@ -26,9 +25,9 @@ fi
 
 cp TestListExamples.java student-submission
 cd student-submission
-LIB=".:../lib/hamcrest-core-1.3.jar:../lib/junit-4.13.2.jar"
-javac -cp $LIB *.java 
-java -cp $LIB org.junit.runner.JUnitCore TestListExamples > result.txt
+LIB_JARS=".:../lib/hamcrest-core-1.3.jar:../lib/junit-4.13.2.jar"
+javac -cp $LIB_JARS *.java 
+java -cp $LIB_JARS org.junit.runner.JUnitCore TestListExamples > result.txt
 
 # "java.lang.IncompatibleClassChangeError: Class ListExamples does not implement the requested interface StringChecker"
 grep results.txt "does not implement the requested interface StringChecker"
